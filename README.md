@@ -1,8 +1,4 @@
-# Dessert
 
-Sure, here's an example README file for a dessert ordering and recommendation system using AI/ML:
-
----
 
 # Dessert Ordering and Recommendation System
 
