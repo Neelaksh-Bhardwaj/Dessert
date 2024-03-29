@@ -7,23 +7,10 @@ import random
 stripe.api_key = "sk_test_51OzGXRSHTYMBDhE84BjlISnZpeBWZsW8AKsEv5mlRQKiVosCDXIkWZPmWXzafYmiTUo3hS33AN0VKfiocbxBcH1Q00g5m8CInA"
 publishable_key = "pk_test_51OzGXRSHTYMBDhE8O2MSh7NLKcTp7515CWgHAgYYx3jvtV0gNmn91BoJ3JqmLEMwTygD77DKz9e68xGsEQYkdv1w00bZDu9pwW"
 
-# Advanced Background Image Function
-def get_background_image(categories, size="regular", orientation=None):
-    keywords = '+'.join(categories)
-    if orientation:
-        url = f"https://source.unsplash.com/{size}/?{keywords}&orientation={orientation}"
-    else:
-        url = f"https://source.unsplash.com/{size}/?{keywords}"
-    
-    try:
-        response = requests.get(url)
-        if response.status_code == 200:
-            return response.url
-        else:
-            return None
-    except requests.exceptions.RequestException as e:
-        st.error(f"Error fetching background image: {e}")
-        return None
+# Background Image
+def get_background_image(category):
+    response = requests.get(f"https://source.unsplash.com/featured/?{category}")
+    return response.url
 
 # Simulated user authentication
 def authenticate(username, password):
@@ -56,7 +43,31 @@ dessert_recommendations = {
 def main():
     session_state = st.session_state
 
-    # Title Bar as Navigation Menu
+    # Title Bar as Scroll Bar
+    st.markdown("""
+        <style>
+            .reportview-container .main .block-container {
+                max-width: 100%;
+            }
+            .reportview-container .main {
+                padding-top: 0rem;
+            }
+            .reportview-container .main .block-container {
+                padding-top: 0rem;
+                padding-right: 0rem;
+                padding-left: 0rem;
+            }
+            .reportview-container .main .block-container .block-content {
+                padding-right: 0rem;
+                padding-left: 0rem;
+            }
+            .reportview-container .main .block-container .block-content p {
+                margin-bottom: 0rem;
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
+    # Header as Navigation Bar
     menu_option = st.selectbox("Menu",
                                 ["Home", "About", "Login", "Contact Us"])
 
@@ -134,11 +145,8 @@ def main():
             for dessert, details in dessert_categories[selected_category].items():
                 col1, col2 = st.columns([1, 3])
                 with col1:
-                    background_image = get_background_image([selected_category, dessert], size="regular", orientation="landscape")
-                    if background_image:
-                        st.image(background_image, use_column_width=True)
-                    else:
-                        st.error("Error loading background image")
+                    background_image = get_background_image(selected_category)
+                    st.image(background_image, use_column_width=True)
                 with col2:
                     selected = st.checkbox(f"{dessert} - ₹{details['price']} | {details['calories']} Calories", key=dessert)
                     if selected:
