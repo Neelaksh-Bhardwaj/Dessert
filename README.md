@@ -31,7 +31,7 @@ Welcome to our Dessert Ordering and Recommendation System! This project leverage
 
 4. Run the application:
    ```
-   python app.py
+   streamlit run your_app.py
    ```
 
 5. Access the application through your web browser at `http://localhost:5000`.
