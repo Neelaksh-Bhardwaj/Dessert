@@ -25,7 +25,7 @@ st.markdown(
     <style>
         .stApp {{
             background-color: {SECONDARY_COLOR};
-            background-image: url('https://i.ibb.co/wBwYTtz/Image-20240401-225155-171.jpg');
+            background-image: url('https://i.ibb.co/zmjh0dZ/IMG-0459.jpg');
             background-size: cover;
             background-position: center;
         }}
