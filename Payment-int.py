@@ -15,9 +15,9 @@ currency = st.selectbox("Currency", ["INR", "USD"])
 
 if st.button("Buy"):
     if currency == "INR":
-        unit_amount = int(price)  # Stripe expects amount in lowest currency unit (e.g., paise for INR)
+        unit_amount = int(price*100)  # Stripe expects amount in lowest currency unit (e.g., paise for INR)
     else:
-        unit_amount = int(price * 100)  # Stripe expects amount in cents for USD
+        unit_amount = int(price*100)  # Stripe expects amount in cents for USD
 
     session = stripe.checkout.Session.create(
         payment_method_types=["card"],
