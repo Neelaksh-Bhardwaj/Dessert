@@ -25,6 +25,9 @@ st.markdown(
     <style>
         .stApp {{
             background-color: {SECONDARY_COLOR};
+            background-image: url('https://i.ibb.co/wBwYTtz/Image-20240401-225155-171.jpg');
+            background-size: cover;
+            background-position: center;
         }}
         .stButton>button {{
             background-color: {PRIMARY_COLOR};
@@ -34,11 +37,11 @@ st.markdown(
             color: {TEXT_COLOR};
         }}
         .animated-logo {{
-            animation: pulse 2s infinite alternate;
+            animation: bounce 2s infinite alternate;
         }}
-        @keyframes pulse {{
-            from {{ transform: scale(1); }}
-            to {{ transform: scale(1.1); }}
+        @keyframes bounce {{
+            from {{ transform: translateY(0); }}
+            to {{ transform: translateY(-10px); }}
         }}
     </style>
     """,
@@ -47,7 +50,7 @@ st.markdown(
 
 # Animated dessert image
 dessert_image = """
-    <img src="<div style="padding-top:75.510%;position:relative;"><iframe src="https://gifer.com/embed/5MbM" width="100%" height="100%" style='position:absolute;top:0;left:0;' frameBorder="0" allowFullScreen></iframe></div><p><a href="https://gifer.com">via GIFER</a></p>" class="animated-logo" width="200" height="200">
+    <img src="https://i.imgur.com/5WLqTTF.gif" class="animated-logo" width="200" height="200">
 """
 
 def login():
@@ -67,10 +70,10 @@ def login():
                 st.error("Invalid username or password")
 
 def main():
-    st.markdown(dessert_image, unsafe_allow_html=True)
     if "logged_in" not in st.session_state or not st.session_state.logged_in:
         login()
     else:
+        st.markdown(dessert_image, unsafe_allow_html=True)
         st.write(f"Welcome back, {st.session_state.username}!")
 
 if __name__ == "__main__":
