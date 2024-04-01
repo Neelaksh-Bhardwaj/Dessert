@@ -43,7 +43,7 @@ def main():
     session_state = st.session_state
 
     st.title("Happieebitees - Sweetness in Every Byte, Hapieebitees' with Sugar-Free Delight.")
-
+    st.markdown("<style>h1{color:pink;}</style>", unsafe_allow_html=True)
     # Display the logo with adjusted size
     logo_image = "https://i.ibb.co/4N8SGmv/Image-20240325-182202-648.png"
     st.image(logo_image, use_column_width=False, width=200)
